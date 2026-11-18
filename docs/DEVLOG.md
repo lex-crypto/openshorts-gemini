@@ -91,3 +91,31 @@ Each session will document:
 - Verify renderer output mapping.
 - Test new video processing and confirm output is written to D:.
 - Evaluate automatic job retention and cleanup behaviour.
+
+### Session 04 — Renderer Dependency Debugging
+
+**Date:** 18 November 2026
+
+**Problem Identified:**
+- Renderer repeatedly crashed during startup.
+- Remotion Interactive export was missing due to package version mismatch.
+
+**Changes Implemented:**
+- Upgraded renderer Docker base image from Node 18 to Node 22.
+- Aligned @remotion/bundler to 4.0.541.
+- Aligned @remotion/renderer to 4.0.541.
+- Aligned remotion to 4.0.541.
+- Regenerated package-lock.json.
+
+**Testing:**
+- Successfully rebuilt renderer Docker image.
+- Verified Remotion bundle generation.
+- Confirmed renderer listening on port 3100.
+- Confirmed all three Docker containers running.
+
+**Outcome:**
+Renderer startup issue resolved.
+
+**Next Steps:**
+- Continue end-to-end video processing tests.
+- Evaluate clip quality and rendering performance.
