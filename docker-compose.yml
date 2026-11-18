@@ -7,7 +7,11 @@ services:
     volumes:
       - .:/app
       - /app/__pycache__
-      - ./output:/app/output
+      - type: bind
+        source: "${OPENSHORTS_OUTPUT_DIR:-./output}"
+        target: /app/output
+    environment:
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
     restart: unless-stopped
 
   frontend:
@@ -32,7 +36,9 @@ services:
     ports:
       - "3100:3100"
     volumes:
-      - ./output:/output
+      - type: bind
+        source: "${OPENSHORTS_OUTPUT_DIR:-./output}"
+        target: /output
     environment:
       - REMOTION_BUNDLE_PATH=/app/remotion
       - OUTPUT_DIR=/output

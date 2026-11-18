@@ -61,3 +61,33 @@ Each session will document:
 - Problems encountered and solutions.
 - Testing and results.
 - Next development milestones.
+
+### Session 03 — Storage Optimization and Docker Configuration
+
+**Date:** 18 November 2026
+
+**Objectives:**
+- Reduce pressure on the Windows system drive.
+- Relocate Docker storage to a secondary drive.
+- Move OpenShorts video-processing output to D:.
+- Make storage configuration portable.
+
+**Work Completed:**
+- Migrated Docker Desktop's disk image location to `D:\DockerDesktopWSL`.
+- Cleaned unused Docker build cache.
+- Configured Docker BuildKit garbage collection with an 8 GB target.
+- Migrated existing OpenShorts output files to `D:\OpenShorts\output`.
+- Updated backend and renderer volume mappings to use the same output directory.
+- Introduced the `OPENSHORTS_OUTPUT_DIR` environment variable for configurable storage.
+- Verified the backend output mount and successful startup of all three containers.
+
+**Outcome:**
+- Docker images and containers preserved after migration.
+- Existing output files preserved on D:.
+- Old duplicate output folder removed from C:.
+- Application successfully restarted with the new storage configuration.
+
+**Next Steps:**
+- Verify renderer output mapping.
+- Test new video processing and confirm output is written to D:.
+- Evaluate automatic job retention and cleanup behaviour.
