@@ -119,3 +119,36 @@ Renderer startup issue resolved.
 **Next Steps:**
 - Continue end-to-end video processing tests.
 - Evaluate clip quality and rendering performance.
+
+### Session 06 — NVIDIA GPU Acceleration
+
+**Date:** 21 November 2026
+
+**GPU Hardware:**
+- Development GPU: NVIDIA GTX 1650 (4 GB VRAM)
+- Additional target GPUs: RTX 3050, RTX 4050 and RTX 4070.
+
+**Changes Implemented:**
+- Enabled GPU=1 in Docker backend build configuration.
+- Added NVIDIA GPU runtime reservation.
+- Configured CUDA-enabled PyTorch.
+- Configured Whisper for CUDA and FP16.
+- Enabled automatic NVENC/CPU encoder selection.
+- Added GPU-specific environment defaults.
+
+**Verification Results:**
+- Docker NVIDIA GPU passthrough successful.
+- PyTorch CUDA 13 detected GTX 1650.
+- CUDA matrix computation successful.
+- ONNX CUDA Execution Provider available.
+- NVIDIA H.264 NVENC encoding successful.
+- Faster-Whisper small model successfully loaded using CUDA and FP16.
+
+**Pending Tests:**
+- Actual speech transcription on GPU.
+- Complete video-to-clips workflow.
+- GPU performance comparison.
+
+**Next Steps:**
+- Complete end-to-end GPU testing.
+- Validate configuration on RTX 3050, 4050 and 4070.

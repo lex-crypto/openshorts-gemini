@@ -1,6 +1,9 @@
 services:
   backend:
-    build: .
+    build: 
+      context: .
+      args:
+        GPU: "1"
     container_name: openshorts-backend
     ports:
       - "8000:8000"
@@ -12,6 +15,18 @@ services:
         target: /app/output
     environment:
       GEMINI_API_KEY: ${GEMINI_API_KEY}
+      WHISPER_MODEL: ${WHISPER_MODEL:-small}
+      WHISPER_DEVICE: ${WHISPER_DEVICE:-cuda}
+      WHISPER_COMPUTE: ${WHISPER_COMPUTE:-float16}
+      FFMPEG_ENCODER: ${FFMPEG_ENCODER:-auto}
+      NVIDIA_DRIVER_CAPABILITIES: "compute,utility,video"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
     restart: unless-stopped
 
   frontend:
